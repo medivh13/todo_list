@@ -74,8 +74,27 @@ func Make() Config {
 		Name:           os.Getenv("DB_NAME"),
 		Port:           os.Getenv("DB_PORT"),
 		SSLMode:        os.Getenv("DB_SSL_MODE"),
-		Schema:         os.Getenv("DB_SCHEMA"),
 		ConnectionName: os.Getenv("DB_CONNECTIONS_NAME"),
+	}
+
+	dBMaxOpenConn, err := strconv.Atoi(os.Getenv("DB_MAX_OPEN_CONN"))
+	if err == nil {
+		sqldb.MaxOpenConn = dBMaxOpenConn
+	}
+
+	dBMaxIdleConn, err := strconv.Atoi(os.Getenv("DB_MAX_IDLE_CONN"))
+	if err == nil {
+		sqldb.MaxIdleConn = dBMaxIdleConn
+	}
+
+	dBMaxIdleTimeConnMinutes, err := strconv.Atoi(os.Getenv("DB_MAX_IDLE_TIME_CONN_MINUTES"))
+	if err == nil {
+		sqldb.MaxIdleTimeConnMinutes = dBMaxIdleTimeConnMinutes
+	}
+
+	dBMaxLifeTimeConnMinutes, err := strconv.Atoi(os.Getenv("DB_MAX_LIFE_TIME_CONN_MINUTES"))
+	if err == nil {
+		sqldb.MaxLifeTimeConnMinutes = dBMaxLifeTimeConnMinutes
 	}
 
 	redis := RedisConf{
@@ -107,7 +126,6 @@ func Make() Config {
 	if err == nil {
 		nats.NatsTimeOut = natsTimeOut
 	}
-	
 
 	http := HttpConf{
 		Port:       os.Getenv("HTTP_PORT"),
@@ -131,26 +149,6 @@ func Make() Config {
 	httpTimeout, err := strconv.Atoi(os.Getenv("HTTP_TIMEOUT"))
 	if err == nil {
 		http.Timeout = httpTimeout
-	}
-
-	dBMaxOpenConn, err := strconv.Atoi(os.Getenv("DB_MAX_OPEN_CONN"))
-	if err == nil {
-		sqldb.MaxOpenConn = dBMaxOpenConn
-	}
-
-	dBMaxIdleConn, err := strconv.Atoi(os.Getenv("DB_MAX_IDLE_CONN"))
-	if err == nil {
-		sqldb.MaxIdleConn = dBMaxIdleConn
-	}
-
-	dBMaxIdleTimeConnMinutes, err := strconv.Atoi(os.Getenv("DB_MAX_IDLE_TIME_CONN_MINUTES"))
-	if err == nil {
-		sqldb.MaxIdleTimeConnMinutes = dBMaxIdleTimeConnMinutes
-	}
-
-	dBMaxLifeTimeConnMinutes, err := strconv.Atoi(os.Getenv("DB_MAX_LIFE_TIME_CONN_MINUTES"))
-	if err == nil {
-		sqldb.MaxLifeTimeConnMinutes = dBMaxLifeTimeConnMinutes
 	}
 
 	config := Config{

@@ -22,3 +22,5 @@ services:
 
 volumes:
   redis_data:  # Volume untuk menyimpan data Redis
+
+# docker-compose up -d
