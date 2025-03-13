@@ -95,7 +95,7 @@ func (h *UserHandler) SignIn(w http.ResponseWriter, r *http.Request) {
 			h.response.HttpError(w, common_error.NewError(common_error.UNAUTHORIZED, err))
 			return
 		}
-		h.response.HttpError(w, common_error.NewError(common_error.FAILED_CREATE_DATA, err))
+		h.response.HttpError(w, common_error.NewError(common_error.DATA_INVALID, err))
 		return
 	}
 
