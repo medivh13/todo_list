@@ -157,6 +157,7 @@ func Make() Config {
 		Log:   log,
 		SqlDb: sqldb,
 		Redis: redis,
+		Nats:  nats,
 	}
 
 	return config
