@@ -3,7 +3,7 @@ version: "3.8"  # Menentukan versi Docker Compose
 services:
   redis:
     image: redis:latest  # Menggunakan image Redis terbaru
-    container_name: redis-ttl_project_container  # Nama container Redis
+    container_name: redis-ttl_todo_list_container  # Nama container Redis
     restart: always  # Restart otomatis jika terjadi error
     command: ["redis-server", "--notify-keyspace-events", "Ex"]  # Mengaktifkan event notification
     ports:
