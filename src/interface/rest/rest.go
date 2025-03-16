@@ -11,6 +11,7 @@ import (
 	usecases "todo_list/src/app/usecases"
 	"todo_list/src/infra/config"
 
+	taskHandler "todo_list/src/interface/rest/handler/task"
 	userHandler "todo_list/src/interface/rest/handler/user"
 	"todo_list/src/interface/rest/response"
 	"todo_list/src/interface/rest/route"
@@ -95,9 +96,10 @@ func makeRoute(
 	respClient := response.NewResponseClient()
 
 	uh := userHandler.NewUserHandler(respClient, useCases.UserUC)
-
+	th := taskHandler.NewTaskHandler(respClient, useCases.TaskUC)
 	r.Route("/api", func(r chi.Router) {
 		r.Mount("/user", route.UserRouter(uh))
+		r.Mount("/task", route.TaskRouter(th))
 
 	})
 	return r

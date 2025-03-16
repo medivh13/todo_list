@@ -97,25 +97,25 @@ func Make() Config {
 		sqldb.MaxLifeTimeConnMinutes = dBMaxLifeTimeConnMinutes
 	}
 
-	redis := RedisConf{
-		Host: os.Getenv("REDIS_HOST"),
-		Port: os.Getenv("REDIS_PORT"),
-	}
+	// redis := RedisConf{
+	// 	Host: os.Getenv("REDIS_HOST"),
+	// 	Port: os.Getenv("REDIS_PORT"),
+	// }
 
-	redisPoolSize, err := strconv.Atoi(os.Getenv("REDIS_POOL_SIZE"))
-	if err == nil {
-		redis.PoolSize = redisPoolSize
-	}
+	// redisPoolSize, err := strconv.Atoi(os.Getenv("REDIS_POOL_SIZE"))
+	// if err == nil {
+	// 	redis.PoolSize = redisPoolSize
+	// }
 
-	redisMinIdleConns, err := strconv.Atoi(os.Getenv("REDIS_MIN_IDLE_CON"))
-	if err == nil {
-		redis.MinIdleConns = redisMinIdleConns
-	}
+	// redisMinIdleConns, err := strconv.Atoi(os.Getenv("REDIS_MIN_IDLE_CON"))
+	// if err == nil {
+	// 	redis.MinIdleConns = redisMinIdleConns
+	// }
 
-	redisIdleTimeout, err := strconv.Atoi(os.Getenv("REDIS_IDLE_TIME_OUT_MINUTE"))
-	if err == nil {
-		redis.IdleTimeout = redisIdleTimeout
-	}
+	// redisIdleTimeout, err := strconv.Atoi(os.Getenv("REDIS_IDLE_TIME_OUT_MINUTE"))
+	// if err == nil {
+	// 	redis.IdleTimeout = redisIdleTimeout
+	// }
 
 	nats := NatsConf{
 		NatsHost:   os.Getenv("NATS_HOST"),
@@ -156,8 +156,8 @@ func Make() Config {
 		Http:  http,
 		Log:   log,
 		SqlDb: sqldb,
-		Redis: redis,
-		Nats:  nats,
+		// Redis: redis,
+		Nats: nats,
 	}
 
 	return config
